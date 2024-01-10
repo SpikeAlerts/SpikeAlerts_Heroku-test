@@ -1,0 +1,3 @@
+To check log with heroku cli
+
+heroku logs --app spikealerts --tail --dyno worker

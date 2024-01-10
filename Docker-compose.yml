@@ -1,0 +1,29 @@
+version: "3.8" # docker compose version
+services:
+  worker:
+    container_name: AQspikealerts
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/app
+    working_dir: /usr/app
+    expose:
+      - "5001"
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+  db:
+    image: postgis/postgis:15-3.4
+    container_name: AQdb
+    expose:
+      - "5432"
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./Database/initializedb.sql:/docker-entrypoint-initdb.d/database.sql
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: AQspikealert
+      POSTGRES_DB: spike-alerts
