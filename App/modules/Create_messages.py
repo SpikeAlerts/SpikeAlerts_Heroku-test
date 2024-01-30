@@ -13,7 +13,7 @@ def new_alert_message(sensor_index, verified_number = True):
         
     # Short version (1 segment)
     
-    message = '''SPIKE ALERT!
+    message = '''Warning.
 Air quality may be unhealthy in your area'''
     
     # URLs cannot be sent until phone number is verified
@@ -103,7 +103,7 @@ def morning_alert_message(verified_number = True):
         
     # Short version (1 segment)
     
-    message = '''Ongoing SpikeAlert
+    message = '''Ongoing alert
 Air quality may be unhealthy in your area'''
     
     # URLs cannot be sent until phone number is verified
