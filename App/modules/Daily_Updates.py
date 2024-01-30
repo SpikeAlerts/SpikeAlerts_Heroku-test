@@ -68,7 +68,7 @@ def workflow(next_update_time, purpleAir_api, redCap_token_signUp, pg_connection
         if len(afterhour_reports) > 0:
             record_ids = [afterhour_report[0] for afterhour_report in afterhour_reports]
             messages = [afterhour_report[1] for afterhour_report in afterhour_reports]
-            Send_Alerts.send_all_messages(record_ids, messages, redCap_token_signUp, pg_connection_dict)
+            #Send_Alerts.send_all_messages(record_ids, messages, redCap_token_signUp, pg_connection_dict)
             Clear_afterhour_reports(pg_connection_dict)
     
         print(len(REDCap_df), 'new users')
