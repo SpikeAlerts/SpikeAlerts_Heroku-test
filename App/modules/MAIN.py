@@ -174,8 +174,9 @@ def main_loop():
         # ~~~~~~~~~~~~~~~~~~~~~           
         
         # Send all messages
+        # Turning this off while updating REDCap (delete "and False" to turn back on and then check out daily updates) 
         
-        if len(record_ids_to_text) > 0:
+        if (len(record_ids_to_text) > 0) and False:
             Send_Alerts.send_all_messages(record_ids_to_text, messages,
                               redCap_token_signUp,
                               pg_connection_dict) # in Send_Alerts.py & .ipynb
