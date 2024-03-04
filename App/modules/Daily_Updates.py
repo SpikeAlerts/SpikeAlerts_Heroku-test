@@ -54,9 +54,7 @@ def workflow(next_update_time, purpleAir_api, redCap_token_signUp, pg_connection
         
         # Update "Sign Up Information" from REDCap - See Daily_Updates.py
         max_record_id = query.Get_newest_user(pg_connection_dict)
-        #REDCap_df = redcap.Get_new_users(max_record_id, redCap_token_signUp)
-        
-        REDCap_df = pd.DataFrame()
+        REDCap_df = redcap.Get_new_users(max_record_id, redCap_token_signUp)
         Add_new_users(REDCap_df, pg_connection_dict)
         
         # Initialize Daily Log
@@ -83,8 +81,8 @@ def workflow(next_update_time, purpleAir_api, redCap_token_signUp, pg_connection
         
             messages = [Create_messages.morning_alert_message()] * len(ongoing_record_ids)
             
-            #Send_Alerts.send_all_messages(ongoing_record_ids, messages,
-            #                              redCap_token_signUp, pg_connection_dict)
+            Send_Alerts.send_all_messages(ongoing_record_ids, messages,
+                                          redCap_token_signUp, pg_connection_dict)
     
     # Get next update time (in 1 day)
     next_update_time += dt.timedelta(days=1)
@@ -475,7 +473,7 @@ def Add_new_users(df, pg_connection_dict):
             numbers = no_loc_df.phone.to_list()
             messages = [Create_messages.no_location(signUp_url)]*len(numbers)
             
-            #our_twilio.send_texts(numbers, messages)
+            our_twilio.send_texts(numbers, messages)
         
         if len(good_df) > 0: # Correct location entry - insert into location
             
@@ -493,7 +491,7 @@ def Add_new_users(df, pg_connection_dict):
             numbers = good_df.phone.to_list()
             messages = [Create_messages.welcome_message()]*len(numbers)
             
-            #our_twilio.send_texts(numbers, messages)
+            our_twilio.send_texts(numbers, messages)
     
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
