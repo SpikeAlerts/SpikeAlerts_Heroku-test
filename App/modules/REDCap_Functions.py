@@ -62,7 +62,7 @@ def Get_phone_numbers(record_ids, redCap_token_signUp):
     }
     
     # Send the request
-    r = requests.post('https://redcap.ahc.umn.edu/api/',data=data)
+    r = requests.post('https://redcap.ahc.umn.edu/redcap/api/',data=data)
     
     # Unpack the response
     
@@ -108,7 +108,7 @@ def Get_new_users(max_record_id, redCap_token_signUp):
     'filterLogic': filterLogic_str  
     }
     
-    r = requests.post('https://redcap.ahc.umn.edu/api/',data=data)
+    r = requests.post('https://redcap.ahc.umn.edu/redcap/api/',data=data)
     
     # Unpack response
     
